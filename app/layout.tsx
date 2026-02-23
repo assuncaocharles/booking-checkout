@@ -9,8 +9,8 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Booking checkout",
-  description: "Booking checkout page",
+  title: "Book appointment",
+  description: "Book appointment",
 };
 
 export default function RootLayout({
