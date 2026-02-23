@@ -1,3 +1,12 @@
+"use client";
+
+import { CheckoutProvider } from "@/contexts/checkout-context";
+import Checkout from "./checkout";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <CheckoutProvider>
+      <Checkout />
+    </CheckoutProvider>
+  );
 }
