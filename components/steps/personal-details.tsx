@@ -1,3 +1,7 @@
+import Button from "@/components/ui/button";
+import BottomBar from "./bottom-bar";
+import Card from "../ui/card";
+
 export type PersonalDetailsProps = {
   onNextStep: () => void;
 };
@@ -10,8 +14,10 @@ export default function PersonalDetails({ onNextStep }: PersonalDetailsProps) {
         onNextStep();
       }}
     >
-      PersonalDetails
-      <button type="submit">Next</button>
+      <Card>PersonalDetails</Card>
+      <BottomBar>
+        <Button type="submit">Continue</Button>
+      </BottomBar>
     </form>
   );
 }
