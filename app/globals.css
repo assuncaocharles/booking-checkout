@@ -3,19 +3,30 @@
 /* Design system tokens */
 :root {
   --grey-20: #f4f4f6;
+  --grey-30: #e3e3e8;
   --text-dark: #131316;
+  --violet-90: #8a1d96;
+  --text-additional: #888896;
 }
 
 /* Semantic tokens */
 :root {
   --background: var(--grey-20);
   --foreground: var(--text-dark);
+  --primary: var(--violet-90);
+  --border: var(--grey-30);
+  --muted-foreground: var(--text-additional);
+  --primary-foreground: var(--violet-90);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-border: var(--border);
   --font-sans: var(--font-nunito-sans);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary-foreground: var(--primary-foreground);
 }
 
 body {
