@@ -1,8 +1,10 @@
 import type { StorybookConfig } from '@storybook/nextjs-vite';
 import path from 'path';
 import { fileURLToPath } from 'node:url';
+import { existsSync } from 'node:fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const publicDir = path.resolve(__dirname, '../public');
 
 const config: StorybookConfig = {
   "stories": [
@@ -18,9 +20,7 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding"
   ],
   "framework": "@storybook/nextjs-vite",
-  "staticDirs": [
-    "../public"
-  ],
+  "staticDirs": existsSync(publicDir) ? ["../public"] : [],
   async viteFinal(config) {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
