@@ -65,6 +65,9 @@ export default function PersonalDetails({
               required: "Phone is required",
               maxLength: 10,
               onChange: (e) => {
+                if (e.target.value.length > 10) {
+                  e.target.value = e.target.value.slice(0, 10);
+                }
                 e.target.value = e.target.value.replace(/\D/g, "");
               },
             })}
