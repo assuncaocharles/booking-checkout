@@ -22,7 +22,7 @@ export default function CompanyInfo({
 }: CompanyInfoProps) {
   return (
     <Card className="p-3 md:p-6">
-      <div className="flex flex-col items-center gap-6 text-base overflow-scroll">
+      <div className="flex flex-col items-center gap-6 text-base overflow-auto">
         <div className="flex flex-col items-center gap-3">
           <div className="size-24 overflow-hidden rounded-full border">
             <Image
