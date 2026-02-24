@@ -4,6 +4,7 @@ import PersonalDetails from "@/components/steps/personal-details";
 import CardDetails from "@/components/steps/card-details";
 import Confirmation from "@/components/steps/confirmation";
 import CompanyInfo from "@/components/company-info/company-info";
+import { defaultCompany } from "@/fixtures/companies";
 import { Subtitle } from "@/components/ui/typography";
 
 export default function Checkout() {
@@ -36,7 +37,14 @@ export default function Checkout() {
             isConfirmation ? "w-full max-w-[542px]" : "w-full md:w-1/3"
           }
         >
-          <CompanyInfo />
+          <CompanyInfo
+            name={defaultCompany.name}
+            logo={defaultCompany.logo}
+            logoAlt={defaultCompany.logoAlt}
+            address={defaultCompany.address}
+            email={defaultCompany.email}
+            phone={defaultCompany.phone}
+          />
         </div>
         <div
           className={
