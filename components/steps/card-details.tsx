@@ -75,55 +75,39 @@ export default function CardDetailsStep({
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
               <Label as="span">Card Information</Label>
-              <Controller
-                name="cardNumber"
-                control={control}
-                rules={{
+              <Input
+                {...register("cardNumber", {
                   required: "Card number is required",
                   validate: (value) =>
                     luhnCheck(value ?? "") ||
                     "Please enter a valid card number",
-                }}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    value={field.value}
-                    onChange={(e) => {
-                      field.onChange(formatCardNumber(e.target.value));
-                    }}
-                    placeholder="1234 1234 1234 1234"
-                    maxLength={CARD_NUMBER_MAX_LENGTH}
-                    inputMode="numeric"
-                    autoComplete="cc-number"
-                    error={errors.cardNumber?.message}
-                  />
-                )}
+                  onChange: (e) => {
+                    e.target.value = formatCardNumber(e.target.value);
+                  },
+                })}
+                placeholder="1234 1234 1234 1234"
+                maxLength={CARD_NUMBER_MAX_LENGTH}
+                inputMode="numeric"
+                autoComplete="cc-number"
+                error={errors.cardNumber?.message}
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <Controller
-                name="cardExpirationDate"
-                control={control}
-                rules={{
+              <Input
+                {...register("cardExpirationDate", {
                   required: "Expiration date is required",
                   validate: (value) =>
                     isValidExpirationDate(value ?? "") ||
                     "Enter a valid future expiration date (MM / YY)",
-                }}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    value={field.value}
-                    onChange={(e) => {
-                      field.onChange(formatExpirationDate(e.target.value));
-                    }}
-                    placeholder="MM / YY"
-                    maxLength={EXPIRATION_MAX_LENGTH}
-                    inputMode="numeric"
-                    autoComplete="cc-exp"
-                    error={errors.cardExpirationDate?.message}
-                  />
-                )}
+                  onChange: (e) => {
+                    e.target.value = formatExpirationDate(e.target.value);
+                  },
+                })}
+                placeholder="MM / YY"
+                maxLength={EXPIRATION_MAX_LENGTH}
+                inputMode="numeric"
+                autoComplete="cc-exp"
+                error={errors.cardExpirationDate?.message}
               />
               <Input
                 {...register("cardCvv", { required: "CVV is required" })}
