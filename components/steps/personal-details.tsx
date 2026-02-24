@@ -61,7 +61,13 @@ export default function PersonalDetails({
             label="Phone"
             type="tel"
             placeholder="Enter your phone number"
-            {...register("phone", { required: "Phone is required" })}
+            {...register("phone", {
+              required: "Phone is required",
+              maxLength: 10,
+              onChange: (e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              },
+            })}
             error={errors.phone?.message}
           />
           <Textarea
