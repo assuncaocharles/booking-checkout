@@ -1,5 +1,7 @@
 # Booking Checkout
 
+[My commit history](https://github.com/assuncaocharles/booking-checkout/commits?author=assuncaocharles) should help you understand my line of thoughts here.
+
 A US-only appointment checkout flow: collect personal details, card details, then confirm. No backend—data is mocked and the final payload is logged to the console.
 
 **Live app:** [booking-checkout.vercel.app](https://booking-checkout.vercel.app/)  
