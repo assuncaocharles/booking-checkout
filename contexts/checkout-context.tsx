@@ -25,14 +25,25 @@ export const CheckoutProvider = ({
 
   const [cardDetails, setCardDetails] = useState<CardDetails>({
     cardNumber: "",
-    cardHolderName: "",
     cardExpirationDate: "",
     cardCvv: "",
     billingZipCode: "",
   });
 
   const submitCheckout = () => {
-    console.log("submitting checkout");
+    console.log(
+      "Successfully submitted",
+      JSON.stringify(
+        {
+          Booking: {
+            PersonalDetails: personalDetails,
+            CardDetails: cardDetails,
+          },
+        },
+        null,
+        2,
+      ),
+    );
   };
 
   return (

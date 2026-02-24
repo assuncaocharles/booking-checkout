@@ -22,7 +22,7 @@ export default function CompanyInfo() {
         </div>
         <div className="grid w-full grid-cols-[auto_1fr] gap-x-6 gap-y-3">
           <div className="text-muted-foreground flex items-start">Address</div>
-          <div className="whitespace-pre-line">
+          <div>
             2525 Camino del Rio S
             <br />
             Suite 315 Room 8

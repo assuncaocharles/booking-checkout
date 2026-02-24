@@ -23,7 +23,6 @@ export interface PersonalDetails {
 
 export interface CardDetails {
   cardNumber: string;
-  cardHolderName: string;
   cardExpirationDate: string;
   cardCvv: string;
   billingZipCode: string;

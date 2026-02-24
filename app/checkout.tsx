@@ -17,11 +17,27 @@ export default function Checkout() {
   } = useCheckout();
 
   return (
-    <div className="flex gap-8 px-30 py-15">
-      <div className="w-1/3">
+    <div
+      className={
+        step === CheckoutStep.Confirmation
+          ? "flex flex-col-reverse gap-8 px-30 py-15 items-center"
+          : "flex gap-8 px-30 py-15"
+      }
+    >
+      <div
+        className={
+          step === CheckoutStep.Confirmation ? "w-full max-w-[542px]" : "w-1/3"
+        }
+      >
         <CompanyInfo />
       </div>
-      <div className="flex flex-col gap-4 w-2/3">
+      <div
+        className={
+          step === CheckoutStep.Confirmation
+            ? "flex flex-col gap-4 w-full max-w-[542px]"
+            : "flex flex-col gap-4 w-2/3"
+        }
+      >
         {step === CheckoutStep.PersonalDetails && (
           <PersonalDetails
             onNextStep={() => setStep(CheckoutStep.CardDetails)}
