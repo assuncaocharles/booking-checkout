@@ -31,10 +31,7 @@ export function Description({
 }: DescriptionProps) {
   return (
     <Component
-      className={cn(
-        "text-sm font-normal text-[var(--text-description)]",
-        className,
-      )}
+      className={cn("text-sm font-normal text-description", className)}
     >
       {children}
     </Component>
