@@ -10,6 +10,8 @@ export interface CheckoutContextValue {
   submitCheckout: () => void;
   personalDetails: PersonalDetails;
   setPersonalDetails: (personalDetails: PersonalDetails) => void;
+  cardDetails: CardDetails;
+  setCardDetails: (cardDetails: CardDetails) => void;
 }
 
 export interface PersonalDetails {
@@ -17,4 +19,12 @@ export interface PersonalDetails {
   email: string;
   phone: string;
   visitReason: string;
+}
+
+export interface CardDetails {
+  cardNumber: string;
+  cardHolderName: string;
+  cardExpirationDate: string;
+  cardCvv: string;
+  billingZipCode: string;
 }

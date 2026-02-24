@@ -3,6 +3,7 @@ import {
   CheckoutContextValue,
   CheckoutStep,
   PersonalDetails,
+  CardDetails,
 } from "@/types/checkout";
 
 const CheckoutContext = createContext<CheckoutContextValue | undefined>(
@@ -22,6 +23,14 @@ export const CheckoutProvider = ({
     visitReason: "",
   });
 
+  const [cardDetails, setCardDetails] = useState<CardDetails>({
+    cardNumber: "",
+    cardHolderName: "",
+    cardExpirationDate: "",
+    cardCvv: "",
+    billingZipCode: "",
+  });
+
   const submitCheckout = () => {
     console.log("submitting checkout");
   };
@@ -34,6 +43,8 @@ export const CheckoutProvider = ({
         submitCheckout,
         personalDetails,
         setPersonalDetails,
+        cardDetails,
+        setCardDetails,
       }}
     >
       {children}

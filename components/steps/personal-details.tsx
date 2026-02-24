@@ -35,7 +35,7 @@ export default function PersonalDetails({
         onNextStep();
       })}
     >
-      <Card>
+      <Card className="px-15 py-12">
         <div className="flex flex-col gap-4">
           <Subtitle>Enter your details below</Subtitle>
           <Input

@@ -17,3 +17,26 @@ export function Subtitle({
     </Component>
   );
 }
+
+export type DescriptionProps = {
+  children: React.ReactNode;
+  className?: string;
+  as?: "p" | "span";
+};
+
+export function Description({
+  children,
+  className,
+  as: Component = "p",
+}: DescriptionProps) {
+  return (
+    <Component
+      className={cn(
+        "text-sm font-normal text-[var(--text-description)]",
+        className,
+      )}
+    >
+      {children}
+    </Component>
+  );
+}

@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 import { tv, VariantProps } from "tailwind-variants";
+import { cn } from "@/helpers/cn";
 
 const buttonVariants = tv({
   base: "cursor-pointer",
@@ -22,7 +23,13 @@ export type ButtonProps = VariantProps<typeof buttonVariants>;
 export default function Button({
   size,
   appearance,
+  className,
   ...props
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) {
-  return <button className={buttonVariants({ size, appearance })} {...props} />;
+  return (
+    <button
+      className={cn(buttonVariants({ size, appearance }), className || "")}
+      {...props}
+    />
+  );
 }

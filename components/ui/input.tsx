@@ -2,9 +2,10 @@
 
 import { forwardRef } from "react";
 import { cn } from "@/helpers/cn";
+import { Label } from "@/components/ui/label";
 
 export type InputProps = {
-  label: string;
+  label?: string;
   id?: string;
   error?: string;
   className?: string;
@@ -13,15 +14,17 @@ export type InputProps = {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, id, error, className, ...props }, ref) => {
     const inputId =
-      id ?? props.name ?? label.toLowerCase().replace(/\s+/g, "-");
+      id ??
+      (typeof props.name === "string"
+        ? props.name
+        : label
+          ? label.toLowerCase().replace(/\s+/g, "-")
+          : undefined);
     return (
       <div className="flex flex-col gap-2">
-        <label
-          htmlFor={inputId}
-          className="text-sm font-semibold text-description"
-        >
-          {label}
-        </label>
+        {label !== undefined && (
+          <Label htmlFor={inputId}>{label}</Label>
+        )}
         <input
           ref={ref}
           id={inputId}
