@@ -38,7 +38,27 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## Possible improvements
+## Scope change scenario: SMS opt-in
+
+*Example: PM asks to add an “SMS opt-in” checkbox to Contact Information (Personal Details step).*
+
+### What would change in the implementation
+
+- **Types** (`types/checkout.ts`): Add `smsOptIn: boolean` (or `smsOptIn?: boolean` if optional) to `PersonalDetails`. Context and payload stay aligned with that shape.
+- **Context** (`contexts/checkout-context.tsx`): Set initial `personalDetails.smsOptIn` (e.g. `false` for opt-in). No other context changes needed.
+- **UI** (`components/steps/personal-details.tsx`): Add a checkbox (e.g. `CheckboxWithLabel`) with copy like “Send me appointment reminders via SMS”, wired with `register('smsOptIn')` or a `Controller`. Submission already sends `personalDetails`, so the new field is included automatically.
+- **Tests**: Update PersonalDetails tests (default value, submit with opt-in on/off). Adjust context tests if they assert the shape of `personalDetails`. Add or update an a11y test for the new control.
+- **Docs / Storybook**: If we had a PersonalDetails story, add a control for `smsOptIn`. No change to generic UI component stories unless we introduce a new variant.
+
+### How to handle it in a real scenario
+
+- **Clarify with PM**: Exact placement (Confirm it’s the Contact Information / Personal Details step), final label and helper text, required vs optional, and default (opt-in vs opt-out). If the flow shows phone only when opted in, confirm that behavior.
+- **Scope and timing**: Treat as a small change (e.g. 1–2 hours including tests and copy). If it’s “late in the build”, agree whether it ships in the current iteration or goes to the backlog, and what (if anything) is deprioritized.
+- **Compliance**: SMS consent often has legal requirements (disclosure, wording, opt-in proof). Confirm with Product/Legal that the copy and behavior are compliant before implementing.
+- **Backend / API**: Confirm the API accepts an `smsOptIn` (or agreed) field and when it will be available. If the backend isn’t ready, we can add the field to the payload and document that the backend will consume it later.
+- **Document**: In the PR, mention the new field, where it appears, and any copy or compliance notes. Update README or product docs if they describe the checkout payload or contact step.
+
+---
 
 **Flow & UX**
 
