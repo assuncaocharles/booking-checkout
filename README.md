@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Booking Checkout
+
+A US-only appointment checkout flow: collect personal details, card details, then confirm. No backend—data is mocked and the final payload is logged to the console.
+
+**Live app:** [booking-checkout.vercel.app](https://booking-checkout.vercel.app/)  
+**Storybook:** [booking-checkout-feqw.vercel.app](https://booking-checkout-feqw.vercel.app/?path=/story/ui-button--default)
+
+---
+
+## Quick start
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+---
 
 ## Getting Started
 
-First, run the development server:
+| Command             | Description                     |
+| ------------------- | ------------------------------- |
+| `npm run dev`       | Start the Next.js dev server    |
+| `npm run storybook` | Run Storybook for UI components |
+| `npm run test`      | Run Vitest (watch mode)         |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Flow:** Personal details → Card details → Confirmation. User moves forward step by step and submits at the end.
+- **Scope:** Front-end only. No API or persistence; checkout result is logged in the browser.
+- **Stack:** Next.js 16, React 19, Tailwind 4, react-hook-form. Company data comes from fixtures.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Possible improvements
 
-To learn more about Next.js, take a look at the following resources:
+**Flow & UX**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Step 2 actions:** Clarify or merge “Book appointment” vs “Continue” so their roles are obvious.
+- **Persistence:** Save progress per step (e.g. local storage or server) so a refresh doesn’t lose data; support an “incomplete” state.
+- **Back navigation:** Let users go back to earlier steps and edit without losing data.
+- **Motion:** Add transitions between steps and on the success screen.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Forms & validation**
 
-## Deploy on Vercel
+- **Validation:** All fields are required; expiration is validated as a future date (MM/YY).
+- **Input masking:** Currently only card and expiration dates are being masked, we could add for zip code and phone latter.
+- **Autofill:** Currently not enabled; could be enabled where appropriate.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Architecture**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Routing:** Use real routes per step with permalinks instead of a single page + context.
+
+**Testing & quality**
+
+- **E2E tests:** Add Playwright for the full checkout flow in a browser.
+- **CI:** Run `test:run`, `lint`, and `build` (and optionally `build-storybook`) on push/PR; consider coverage thresholds.
+- **Storybook for steps:** Add stories for PersonalDetails, CardDetails, Confirmation (with `CheckoutProvider` and mocks) to document and visually test the flow.
+- **Visual regression:** Use Chromatic or similar to catch UI changes in Storybook.
+
+---
+
+## AI usage
+
+- Project and first components were built manually to set patterns and structure.
+- AI was used for Tailwind guidance, replicating patterns, and speeding up form and UI work (plan + agent mode).
+- After the app was done, AI was used to add unit tests, Storybook, and basic a11y checks.
+
+Session notes:
+
+- [Build and get app done](https://gist.github.com/assuncaocharles/cc38cfcfb4f085ea82e3c72713088786)
+- [Unit tests and Storybook](https://gist.github.com/assuncaocharles/12a551c26f1f1900842b73aa5cb48eef)
