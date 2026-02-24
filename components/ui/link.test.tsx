@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen } from "@testing-library/react";
 import Link from "./link";
 
@@ -17,5 +18,12 @@ describe("Link", () => {
       </Link>,
     );
     expect(screen.getByRole("link")).toHaveClass("my-link");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <Link href="/checkout">Go to checkout</Link>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen, fireEvent } from "@testing-library/react";
 import {
   Checkbox,
@@ -32,5 +33,14 @@ describe("CheckboxWithLabel", () => {
   it("supports disabled state", () => {
     render(<CheckboxWithLabel label="Disabled" disabled />);
     expect(screen.getByRole("checkbox")).toBeDisabled();
+  });
+});
+
+describe("Checkbox a11y", () => {
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <CheckboxWithLabel label="I agree to terms" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

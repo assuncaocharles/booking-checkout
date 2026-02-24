@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen, act } from "@testing-library/react";
 import { CheckoutProvider, useCheckout } from "./checkout-context";
 import { CheckoutStep } from "@/types/checkout";
@@ -118,5 +119,14 @@ describe("CheckoutProvider and useCheckout", () => {
     expect(() => render(<OuterConsumer />)).toThrow(
       "useCheckout must be used within a CheckoutProvider",
     );
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <CheckoutProvider>
+        <Consumer />
+      </CheckoutProvider>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

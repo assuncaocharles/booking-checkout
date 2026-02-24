@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen } from "@testing-library/react";
 import CardDetailsStep from "./card-details";
 import type { CardDetails } from "@/types/checkout";
@@ -40,5 +41,16 @@ describe("CardDetailsStep", () => {
     expect(
       screen.getByText(/reschedule or cancel at least 24 hours/i),
     ).toBeInTheDocument();
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <CardDetailsStep
+        onNextStep={vi.fn()}
+        onSetCardDetails={vi.fn()}
+        cardDetails={defaultCardDetails}
+      />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

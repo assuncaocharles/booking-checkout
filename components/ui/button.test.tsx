@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen } from "@testing-library/react";
 import Button from "./button";
 
@@ -30,5 +31,10 @@ describe("Button", () => {
     const btn = container.querySelector("button");
     expect(btn).toBeInTheDocument();
     expect(btn).toHaveTextContent("Primary");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(<Button>Continue</Button>);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

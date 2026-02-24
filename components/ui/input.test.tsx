@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen } from "@testing-library/react";
 import Input from "./input";
 
@@ -23,5 +24,12 @@ describe("Input", () => {
     const ref = { current: null as HTMLInputElement | null };
     render(<Input ref={ref} label="Test" />);
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <Input label="Email" placeholder="you@example.com" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import PersonalDetails from "./personal-details";
 import type { PersonalDetails as PersonalDetailsType } from "@/types/checkout";
@@ -77,5 +78,18 @@ describe("PersonalDetails", () => {
       screen.findByText("Full name is required"),
     ).resolves.toBeInTheDocument();
     expect(onNextStep).not.toHaveBeenCalled();
+  });
+
+  it("has no accessibility violations", async () => {
+    const onNextStep = vi.fn();
+    const onSetPersonalDetails = vi.fn();
+    const { container } = render(
+      <PersonalDetails
+        onNextStep={onNextStep}
+        onSetPersonalDetails={onSetPersonalDetails}
+        personalDetails={defaultDetails}
+      />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

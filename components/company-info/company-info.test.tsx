@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { axe } from "vitest-axe";
 import { render, screen } from "@testing-library/react";
 import CompanyInfo from "./company-info";
 import type { Company } from "@/types/company";
@@ -64,5 +65,10 @@ describe("CompanyInfo", () => {
     );
     expect(screen.getByRole("heading", { name: "Other Biz" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "other@example.com" })).toBeInTheDocument();
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(<CompanyInfo {...mockCompany} />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
