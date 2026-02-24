@@ -35,7 +35,7 @@ export default function PersonalDetails({
         onNextStep();
       })}
     >
-      <Card className="px-15 py-12">
+      <Card className="px-4 py-6 md:px-15 md:py-12">
         <div className="flex flex-col gap-4">
           <Subtitle>Enter your details below</Subtitle>
           <Input
@@ -75,7 +75,9 @@ export default function PersonalDetails({
         </div>
       </Card>
       <BottomBar>
-        <Button type="submit">Continue</Button>
+        <Button type="submit" className="w-full md:w-auto">
+          Continue
+        </Button>
       </BottomBar>
     </form>
   );

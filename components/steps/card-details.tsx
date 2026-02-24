@@ -9,7 +9,10 @@ import Input from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Description, Subtitle } from "@/components/ui/typography";
 import { luhnCheck } from "@/helpers/luhn";
-import { formatCardNumber, CARD_NUMBER_MAX_LENGTH } from "@/helpers/card-number";
+import {
+  formatCardNumber,
+  CARD_NUMBER_MAX_LENGTH,
+} from "@/helpers/card-number";
 import {
   formatExpirationDate,
   isValidExpirationDate,
@@ -62,7 +65,7 @@ export default function CardDetailsStep({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Card className="px-15 py-12">
+      <Card className="px-4 py-6 md:px-15 md:py-12">
         <div className="flex flex-col gap-4">
           <Subtitle>Secure your appointment by card</Subtitle>
           <Description>
@@ -165,8 +168,8 @@ export default function CardDetailsStep({
                 </div>
               )}
             />
-            <hr className="my-9 border-0 border-t border-border" />
-            <Button className="mb-9">Book appointment</Button>
+            <hr className="my-6 border-0 border-t border-border" />
+            <Button className="mb-0 md:mb-9">Book appointment</Button>
             <Description>
               By creating this appointment, you acknowledge you will receive
               automated transactional messages from this merchant.
@@ -175,7 +178,9 @@ export default function CardDetailsStep({
         </div>
       </Card>
       <BottomBar>
-        <Button type="submit">Continue</Button>
+        <Button type="submit" className="w-full md:w-auto">
+          Continue
+        </Button>
       </BottomBar>
     </form>
   );

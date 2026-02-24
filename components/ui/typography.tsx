@@ -3,7 +3,7 @@ import { cn } from "@/helpers/cn";
 export type SubtitleProps = {
   children: React.ReactNode;
   className?: string;
-  as?: "h2" | "h3" | "p";
+  as?: "h1" | "h2" | "h3" | "p";
 };
 
 export function Subtitle({

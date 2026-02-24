@@ -15,7 +15,7 @@ export default function Confirmation({ onSubmitCheckout }: ConfirmationProps) {
 
   return (
     <Card>
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 px-10 text-center">
         <Image
           src={success}
           alt="Confirmation"
