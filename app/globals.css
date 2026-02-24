@@ -4,6 +4,8 @@
 :root {
   --grey-20: #f4f4f6;
   --grey-30: #e3e3e8;
+  --grey-50: #aeaeb7;
+  --grey-60: #60606c;
   --text-dark: #131316;
   --violet-90: #8a1d96;
   --text-additional: #888896;
@@ -15,6 +17,8 @@
   --foreground: var(--text-dark);
   --primary: var(--violet-90);
   --border: var(--grey-30);
+  --border-secondary: var(--grey-50);
+  --text-description: var(--grey-60);
   --muted-foreground: var(--text-additional);
   --primary-foreground: var(--violet-90);
 }
@@ -24,9 +28,11 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-border: var(--border);
+  --color-secondary: var(--border-secondary);
   --font-sans: var(--font-nunito-sans);
   --color-muted-foreground: var(--muted-foreground);
   --color-primary-foreground: var(--primary-foreground);
+  --color-description: var(--text-description);
 }
 
 body {

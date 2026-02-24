@@ -6,7 +6,8 @@ import Confirmation from "@/components/steps/confirmation";
 import CompanyInfo from "@/components/company-info/company-info";
 
 export default function Checkout() {
-  const { step, setStep, submitCheckout } = useCheckout();
+  const { step, setStep, submitCheckout, setPersonalDetails, personalDetails } =
+    useCheckout();
 
   return (
     <div className="flex gap-8 px-30 py-15">
@@ -17,6 +18,8 @@ export default function Checkout() {
         {step === CheckoutStep.PersonalDetails && (
           <PersonalDetails
             onNextStep={() => setStep(CheckoutStep.CardDetails)}
+            onSetPersonalDetails={setPersonalDetails}
+            personalDetails={personalDetails}
           />
         )}
         {step === CheckoutStep.CardDetails && (
